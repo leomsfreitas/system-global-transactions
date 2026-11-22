@@ -90,15 +90,33 @@ gantt
 
 ## 6. Correções em relação ao documento original
 
+Fonte: "Gerenciamento de Cronograma - Grupo 2" (elaborado em 28/08/2026, GP Gabriel Resende). As atividades, predecessoras e durações do original foram mantidas; só o cálculo das datas mudou.
+
+| ID | Duração | Predecessora | Original (início–fim) | LB-1 (início–fim) |
+|---|---|---|---|---|
+| AT01 | 3 | - | 1–3 | 1–3 |
+| AT02 | 4 | - | 3–7 | 1–4 |
+| AT03 | 3 | AT01 | 7–10 | 4–6 |
+| AT04 | 5 | AT03 | 10–15 | 7–11 |
+| AT05 | 7 | AT03, AT04 | 15–22 | 12–18 |
+| AT06 | 5 | AT05 | 22–27 | 19–23 |
+| AT07 | 5 | AT06 | 27–32 | 24–28 |
+| AT08 | 7 | AT07 | 32–39 | 29–35 |
+| AT09 | 5 | AT07, AT08 | 39–44 | 36–40 |
+| AT10 | 5 | AT09 | 44–49 | 41–45 |
+| AT11 | 5 | AT10 | 49–53 | 46–50 |
+| AT12 | 3 | AT11 | 53–56 | 51–53 |
+| AT13 | 2 | AT12 | 56–58 | 54–55 |
+| AT14 | 2 | AT13 | 58–60 | 56–57 |
+| AT15 | 2 | AT14 | 60–62 | 58–59 |
+
 | # | Problema no original | Correção |
 |---|---|---|
-| C1 | Convenções diferentes de início/fim entre linhas (ex.: AT01 termina no dia 3 e AT02 começa no dia 3, como se o dia 3 fosse compartilhado) | Convenção única da seção 1; nenhum dia é contado duas vezes |
-| C2 | AT11 com 5 dias, mas posicionada nos dias 49 a 53: desalinhada do fim de AT10 e lida com outra convenção que as linhas vizinhas | AT11 recalculada: dias 46 a 50 |
-| C3 | AT02 sem predecessora, mas encadeada no cálculo depois de AT01 (empurrando o restante) | AT02 em paralelo desde o dia 1; dependência real só de gestão (decisão D2) |
-| C4 | Durações dos marcos não fechavam com a soma das atividades | Marcos recalculados (seção 4); somam o total |
-| C5 | Total de 62 dias, que não corresponde nem à soma bruta (63) nem ao caminho crítico | Total de 59 dias pelo caminho crítico |
-
-As datas linha a linha do documento original não estavam disponíveis nesta revisão; as correções C1 a C5 partem das inconsistências apontadas na especificação e das predecessoras e durações oficiais, que não mudaram.
+| C1 | Convenções misturadas: AT01 vai de 1 a 3 (fim inclusivo, 3 dias), mas as demais usam fim = início + duração, e cada atividade começa no mesmo dia em que a anterior termina (AT01 termina no 3 e AT02 começa no 3) | Convenção única da seção 1; nenhum dia contado duas vezes |
+| C2 | AT11 tem 5 dias, mas vai do 49 ao 53 (4 dias pela subtração usada nas outras linhas) | AT11 nos dias 46 a 50 |
+| C3 | AT02 não tem predecessora, mas foi encadeada depois de AT01, e AT03 (que depende só de AT01) começa no fim de AT02 (dia 7). Isso empurra o projeto inteiro em 4 dias | AT02 em paralelo desde o dia 1; AT03 logo após AT01 |
+| C4 | Marcos com 10 + 17 + 17 + 13 + 6 = 63 dias, mas o projeto termina no dia 62; "Iniciação" com 10 dias inclui o atraso de AT02 | Marcos recalculados (seção 4): 6 + 17 + 17 + 13 + 6 = 59 |
+| C5 | Total de 62 dias, que não bate com a soma dos marcos (63) nem com o caminho crítico | Total de 59 dias pelo caminho crítico |
 
 ## 7. Decisões
 
