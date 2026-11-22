@@ -24,8 +24,17 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
+      # O Trivy resolve o pom.xml no Maven Central e e bloqueado por excesso de requisicoes.
+      # Com o ~/.m2 populado (e em cache) ele resolve localmente.
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: Popula o cache local do Maven
+        run: ./mvnw -B -q install -DskipTests -Dspotless.check.skip -Djacoco.skip
       - name: Dependencias Maven, Dockerfile e IaC
-        run: docker run --rm -v "$PWD":/w -w /w aquasec/trivy:0.76.2 fs --scanners vuln,misconfig,secret --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 .
+        run: docker run --rm -v "$PWD":/w -v "$HOME/.m2":/root/.m2:ro -w /w aquasec/trivy:0.76.2 fs --offline-scan --scanners vuln,misconfig,secret --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 .
       - name: Build da imagem da API
         run: docker build --build-arg MODULO=api -t transacoes-api:ci .
       - name: Imagem

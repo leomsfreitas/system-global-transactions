@@ -26,9 +26,11 @@ jobs:
           cache: maven
       - name: Build + testes unitarios e de integracao (Testcontainers) + JaCoCo >= 80% + Spotless
         run: ./mvnw -B verify
+      # Dinheiro so existe em dominio e api. Conectores usam double/float apenas em parametros do
+      # Resilience4j (backoff e percentual do circuit breaker), exigidos pela biblioteca.
       - name: Nenhum double/float em codigo de dinheiro
         run: |
-          if grep -rnE '\b(double|float|Double|Float)\b' modulos/*/src/main/java; then
+          if grep -rnE '\b(double|float|Double|Float)\b' modulos/dominio/src/main/java modulos/api/src/main/java | grep -vE '^\S+:[0-9]+:\s*(//|/?\*)'; then
             echo "::error::Uso de ponto flutuante encontrado no codigo de producao"; exit 1
           fi
       - uses: actions/upload-artifact@v5
