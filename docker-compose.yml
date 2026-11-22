@@ -1,0 +1,107 @@
+# Ambiente local completo: make up
+name: transacoes
+
+x-banco: &banco
+  DB_URL: jdbc:postgresql://postgres:5432/transacoes
+
+services:
+  postgres:
+    image: postgres:17.10-alpine
+    environment:
+      POSTGRES_DB: transacoes
+      POSTGRES_USER: transacoes_owner
+      POSTGRES_PASSWORD: ${DB_SENHA_OWNER:?defina no .env}
+      DB_SENHA_API: ${DB_SENHA_API:?defina no .env}
+      DB_SENHA_WORKER: ${DB_SENHA_WORKER:?defina no .env}
+    volumes:
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
+      - dados-postgres:/var/lib/postgresql/data
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U transacoes_owner -d transacoes"]
+      interval: 3s
+      retries: 20
+
+  redis:
+    image: redis:7.4.11-alpine
+    ports: ["6379:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      retries: 20
+
+  wiremock:
+    image: wiremock/wiremock:3.13.2
+    command: ["--global-response-templating=false", "--disable-banner"]
+    volumes:
+      - ./docker/wiremock/mappings:/home/wiremock/mappings:ro
+      - ./modulos/conectores/src/test/resources/fixtures:/home/wiremock/__files:ro
+    ports: ["8089:8080"]
+
+  # Tarefa unica: migrations com o usuario dono (como a tarefa ECS do CD).
+  migracao:
+    build: { context: ., args: { MODULO: worker } }
+    image: transacoes-worker:local
+    command: ["--job=MigracaoJob"]
+    environment:
+      <<: *banco
+      DB_USUARIO_WORKER: transacoes_owner
+      DB_SENHA_WORKER: ${DB_SENHA_OWNER}
+      MIGRACAO_DB_URL: jdbc:postgresql://postgres:5432/transacoes
+      MIGRACAO_DB_USUARIO: transacoes_owner
+      MIGRACAO_DB_SENHA: ${DB_SENHA_OWNER}
+      REDIS_HOST: redis
+    depends_on:
+      postgres: { condition: service_healthy }
+    restart: "no"
+
+  seed:
+    image: postgres:17.10-alpine
+    command: ["psql", "-v", "ON_ERROR_STOP=1", "-h", "postgres", "-U", "transacoes_owner", "-d", "transacoes", "-f", "/seed/seed-local.sql"]
+    environment:
+      PGPASSWORD: ${DB_SENHA_OWNER}
+    volumes:
+      - ./db/seed:/seed:ro
+    depends_on:
+      migracao: { condition: service_completed_successfully }
+    restart: "no"
+
+  api:
+    build: { context: ., args: { MODULO: api } }
+    image: transacoes-api:local
+    environment:
+      <<: *banco
+      SPRING_PROFILES_ACTIVE: local
+      DB_USUARIO_API: transacoes_api
+      DB_SENHA_API: ${DB_SENHA_API}
+      REDIS_HOST: redis
+      API_KEYS_SHA256: ${API_KEYS_SHA256:?defina no .env}
+    ports: ["8080:8080"]
+    depends_on:
+      seed: { condition: service_completed_successfully }
+      redis: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health/readiness | grep -q UP"]
+      interval: 5s
+      retries: 30
+
+  worker:
+    image: transacoes-worker:local
+    environment:
+      <<: *banco
+      SPRING_PROFILES_ACTIVE: local
+      DB_USUARIO_WORKER: transacoes_worker
+      DB_SENHA_WORKER: ${DB_SENHA_WORKER}
+      REDIS_HOST: redis
+      URL_BCB_PTAX: http://wiremock:8080/ptax
+      URL_BCB_SGS: http://wiremock:8080/sgs
+      URL_BCE: http://wiremock:8080/bce
+      URL_FMI: http://wiremock:8080/fmi
+      URL_BANCO_MUNDIAL: http://wiremock:8080/bm
+    depends_on:
+      seed: { condition: service_completed_successfully }
+      wiremock: { condition: service_started }
+      redis: { condition: service_healthy }
+
+volumes:
+  dados-postgres:

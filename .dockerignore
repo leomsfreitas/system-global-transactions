@@ -1,0 +1,8 @@
+**/target
+.git
+.idea
+docs
+infra
+testes-carga
+*.md
+.env

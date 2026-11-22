@@ -1,0 +1,174 @@
+{
+  "mappings": [
+    {
+      "name": "ptax-moedas",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/ptax/Moedas"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "bcb/ptax-moedas.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "name": "ptax-usd",
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/ptax/CotacaoMoedaPeriodo.*",
+        "queryParameters": {
+          "@moeda": {
+            "equalTo": "'USD'"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "bcb/ptax-cotacao-periodo-usd.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "name": "ptax-outras",
+      "priority": 9,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/ptax/CotacaoMoedaPeriodo.*"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "bcb/ptax-cotacao-dia-vazio.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "name": "sgs-selic",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/sgs/dados/serie/bcdata.sgs.432/dados"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "bcb/sgs-selic-meta-432.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "name": "sgs-ipca",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/sgs/dados/serie/bcdata.sgs.13522/dados"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "bcb/sgs-ipca-12m-13522.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "name": "bce-exr",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/bce/EXR/.*"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "bce/exr-diario-multi.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "name": "bm-inflacao",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/bm/country/.*/indicator/FP.CPI.TOTL.ZG"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "bancomundial/inflacao-multi.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "name": "bm-pib",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/bm/country/.*/indicator/NY.GDP.MKTP.CD"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "bancomundial/pib-multi.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "name": "bm-pv",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/bm/country/.*/indicator/GOV_WGI_PV.EST"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "bancomundial/pv-est-multi.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "name": "fmi-cpi",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/fmi/data/dataflow/IMF.STA/CPI/.*"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "fmi/cpi-inflacao-anual-ar-br.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "name": "fmi-ir",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/fmi/data/dataflow/IMF.STA/MFS_IR/.*"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "fmi/mfs-ir-juros-politica-mex-chn.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}
