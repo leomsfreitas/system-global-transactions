@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- ADR 0001: Spring Boot 4.1.x (linha GA mais madura em 22/11/2026) -->
+    <!-- ADR 0001: Spring Boot 4.1.x; versoes publicadas ha 14+ dias (ADR 0002) -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.1.3</version>
+        <version>4.1.2</version>
         <relativePath/>
     </parent>
 
@@ -29,11 +29,11 @@
         <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <resilience4j.version>2.4.0</resilience4j.version>
-        <bucket4j.version>8.23.0</bucket4j.version>
+        <bucket4j.version>8.22.0</bucket4j.version>
         <springdoc.version>3.1.1</springdoc.version>
         <wiremock.version>3.13.2</wiremock.version>
-        <swagger-request-validator.version>3.0.0</swagger-request-validator.version>
-        <spotless.version>3.12.0</spotless.version>
+        <openapi-request-validator.version>3.0.0</openapi-request-validator.version>
+        <spotless.version>3.11.0</spotless.version>
         <jacoco.version>0.8.16</jacoco.version>
         <cobertura.minima>0.80</cobertura.minima>
         <!-- Os modulos dominio e conectores ativam a regra de cobertura -->
@@ -76,8 +76,8 @@
             </dependency>
             <dependency>
                 <groupId>com.atlassian.oai</groupId>
-                <artifactId>swagger-request-validator-core</artifactId>
-                <version>${swagger-request-validator.version}</version>
+                <artifactId>openapi-request-validator-core</artifactId>
+                <version>${openapi-request-validator.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
