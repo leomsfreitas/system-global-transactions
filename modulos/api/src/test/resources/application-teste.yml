@@ -1,0 +1,13 @@
+# Nos testes o Flyway roda com o usuario do container (dono), para criar o schema.
+spring:
+  flyway:
+    enabled: true
+seguranca:
+  # SHA-256 de "chave-teste"
+  chaves-api-sha256: c9648706b05c4ec27abc95d55171c268461eb4f2274ebfca33910b1e724ac22a
+logging:
+  structured:
+    format:
+      console: ""
+  level:
+    org.testcontainers: WARN
