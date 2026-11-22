@@ -1,0 +1,8 @@
+# Riscos aceitos (mesmas excecoes do Checkov, ver infra/.checkov.yaml e docs/04-testes/auditoria-seguranca.md)
+
+# ALB interno em HTTP: trafego Gateway -> VPC Link -> ALB fica dentro da VPC (ADR 0017)
+AWS-0054
+
+# Saida HTTPS (443) para a internet: o worker chama BCB, BCE, Banco Mundial e FMI, e as tarefas
+# acessam ECR, Secrets Manager e CloudWatch. So a porta 443, so saida.
+AWS-0104
