@@ -21,7 +21,9 @@ RUN --mount=type=cache,target=/root/.m2 \
 FROM eclipse-temurin:21.0.12_8-jre-alpine
 ARG MODULO
 LABEL org.opencontainers.image.title="transacoes-${MODULO}"
-RUN addgroup -S app && adduser -S app -G app \
+# apk upgrade: aplica correcoes de seguranca do Alpine sobre a imagem base (achados do Trivy, AT12)
+RUN apk upgrade --no-cache \
+    && addgroup -S app && adduser -S app -G app \
     && apk add --no-cache curl \
     && curl -fsSL https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem -o /etc/ssl/certs/rds-global-bundle.pem \
     && apk del curl
