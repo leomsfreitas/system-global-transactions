@@ -1,0 +1,136 @@
+spring:
+  application:
+    name: transacoes-api
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/transacoes}
+    username: ${DB_USUARIO_API:transacoes_api}
+    password: ${DB_SENHA_API:}
+    hikari:
+      maximum-pool-size: ${DB_POOL_MAXIMO:20}
+      minimum-idle: 5
+      connection-timeout: 2000
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.jdbc.time_zone: UTC
+  # A API nao roda migrations: elas rodam como tarefa unica com o usuario dono (ADR 0013).
+  flyway:
+    enabled: false
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORTA:6379}
+      password: ${REDIS_SENHA:}
+      ssl:
+        enabled: ${REDIS_TLS:false}
+      timeout: 200ms
+      connect-timeout: 300ms
+  mvc:
+    problemdetails:
+      enabled: false
+
+server:
+  port: 8080
+  shutdown: graceful
+  error:
+    include-stacktrace: never
+    include-message: never
+
+seguranca:
+  # Hashes SHA-256 (hex) das chaves aceitas, separados por virgula. Nunca a chave em texto claro.
+  chaves-api-sha256: ${API_KEYS_SHA256:}
+  limite-requisicoes:
+    habilitado: false
+    requisicoes-por-segundo: 50
+    rajada: 100
+
+ajuste-geopolitico:
+  estrategia: PAIS_DESTINO
+  peso-politico: 0.6
+  peso-economico: 0.4
+  limite-inflacao: 50
+  ajuste-maximo: 0.05
+  estabilidade-minima: -2.5
+  estabilidade-maxima: 2.5
+
+cotacao:
+  idade-maxima: 4d
+  historico-intervalo-maximo-dias: 366
+  pivos:
+    - moeda: BRL
+      fonte: BCB
+    - moeda: EUR
+      fonte: BCE
+
+cache:
+  habilitado: true
+  ttl-cotacao: 15m
+  ttl-indice: 24h
+  ttl-indicadores: 24h
+  ttl-moedas: 24h
+  pausa-apos-falha: 30s
+
+# O Swagger UI exibe a spec escrita a mao (fonte da verdade, contract-first). O springdoc exige o
+# endpoint api-docs ligado para servir o UI; ele fica num caminho interno e nao e usado pelo UI.
+springdoc:
+  api-docs:
+    path: /interno/api-docs-gerado
+  swagger-ui:
+    path: /swagger-ui
+    url: /api-spec/openapi.yaml
+    disable-swagger-default-url: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+      group:
+        readiness:
+          include: readinessState,db
+  health:
+    redis:
+      enabled: false
+
+metricas:
+  cloudwatch:
+    habilitado: false
+
+logging:
+  structured:
+    format:
+      console: ecs
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+seguranca:
+  limite-requisicoes:
+    habilitado: true
+logging:
+  structured:
+    format:
+      console: ""
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level [%X{traceId:-}] %logger{36} - %msg%n"
+---
+spring:
+  config:
+    activate:
+      on-profile: aws
+  datasource:
+    url: ${DB_URL}?sslmode=verify-full&sslrootcert=/etc/ssl/certs/rds-global-bundle.pem
+metricas:
+  cloudwatch:
+    habilitado: true
