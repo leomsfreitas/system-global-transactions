@@ -40,7 +40,8 @@ final class Mapeador {
   }
 
   static IndicadorEconomicoResponse indicador(IndicadorResumo i) {
-    return new IndicadorEconomicoResponse(i.tipo(), i.valor(), i.periodo());
+    // NUMERIC(24,6) traz zeros a direita (4.630000); o indicador e devolvido com a escala natural.
+    return new IndicadorEconomicoResponse(i.tipo(), i.valor().stripTrailingZeros(), i.periodo());
   }
 
   static IndiceGeopoliticoResponse indice(IndiceAtual i) {

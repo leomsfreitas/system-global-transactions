@@ -11,6 +11,7 @@ import com.ifsp.gcsw.transacoes.dominio.taxa.TaxaResolvida;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.OffsetDateTime;
+import java.time.temporal.ChronoUnit;
 import org.springframework.stereotype.Service;
 
 /**
@@ -61,7 +62,7 @@ public class ServicoConversao {
 
     ResultadoConversao resultado =
         motor.converter(valor, taxa.valor(), fator, moedaDestino.casasDecimais());
-    OffsetDateTime agora = OffsetDateTime.now(relogio);
+    OffsetDateTime agora = OffsetDateTime.now(relogio).truncatedTo(ChronoUnit.MILLIS);
 
     auditoria.save(
         new Conversao(

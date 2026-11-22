@@ -35,7 +35,7 @@ class RedisForaTest {
     @Bean
     @ServiceConnection
     PostgreSQLContainer postgres() {
-      return new PostgreSQLContainer(DockerImageName.parse("postgres:17-alpine"));
+      return new PostgreSQLContainer(DockerImageName.parse("postgres:17.10-alpine"));
     }
   }
 
