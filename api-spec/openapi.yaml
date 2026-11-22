@@ -1,0 +1,582 @@
+openapi: 3.0.3
+info:
+  title: API de Transações com Ajuste Geopolítico
+  version: 1.0.0
+  description: |
+    Converte valores entre moedas usando cotações oficiais de bancos centrais (BCB e BCE) e aplica
+    um fator de ajuste baseado no risco geopolítico do país (Banco Mundial e FMI).
+
+    - Todas as rotas exigem o cabeçalho `X-API-Key`.
+    - Valores monetários trafegam como números decimais; nunca use ponto flutuante binário no cliente
+      para refazer contas.
+    - As cotações não são de tempo real: o PTAX publica boletins em dias úteis e o BCE uma vez por dia
+      útil. O cabeçalho `X-Data-Referencia` informa a data da cotação usada.
+    - Se a cotação mais recente tiver mais de 4 dias, a API responde 503.
+  contact:
+    name: Equipe do projeto (YouPay)
+    url: https://github.com/youpay/transacoes-geopoliticas
+  license:
+    name: Uso interno YouPay
+    url: https://github.com/youpay/transacoes-geopoliticas/blob/main/LICENSE
+servers:
+  - url: http://localhost:8080
+    description: Ambiente local (make up)
+  - url: https://api.transacoes.youpay.com.br
+    description: Produção
+security:
+  - chaveApi: []
+tags:
+  - name: Conversões
+    description: Conversão de valores com ou sem ajuste geopolítico
+  - name: Moedas
+    description: Moedas suportadas
+  - name: Cotações
+    description: Cotações atuais e históricas
+  - name: Indicadores
+    description: Indicadores econômicos por país
+  - name: Índices geopolíticos
+    description: Índice de risco e fator de ajuste por país
+
+paths:
+  /api/v1/conversoes:
+    post:
+      tags: [Conversões]
+      operationId: converter
+      summary: Converte valor entre duas moedas
+      description: |
+        Calcula `valorConvertido = valor × taxaCambio × fatorGeopolitico`, arredondado (HALF_EVEN) para as
+        casas decimais ISO 4217 da moeda de destino. Com `aplicarAjusteGeopolitico = false`, o fator é 1.0000.
+        Cada conversão bem-sucedida é registrada para auditoria.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConversaoRequest'
+            examples:
+              canonico:
+                summary: 100 USD para BRL com ajuste
+                value:
+                  moedaOrigem: USD
+                  moedaDestino: BRL
+                  valor: 100.00
+                  aplicarAjusteGeopolitico: true
+      responses:
+        '200':
+          description: Conversão realizada
+          headers:
+            X-Data-Referencia:
+              $ref: '#/components/headers/X-Data-Referencia'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversaoResponse'
+              examples:
+                canonico:
+                  value:
+                    moedaOrigem: USD
+                    moedaDestino: BRL
+                    valorOriginal: 100.00
+                    taxaCambio: 5.421000
+                    fatorGeopolitico: 0.9850
+                    valorConvertido: 533.97
+                    dataHora: '2026-11-20T18:00:00Z'
+        '400':
+          $ref: '#/components/responses/RequisicaoInvalida'
+        '401':
+          $ref: '#/components/responses/NaoAutorizado'
+        '404':
+          $ref: '#/components/responses/NaoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteExcedido'
+        '503':
+          $ref: '#/components/responses/Indisponivel'
+
+  /api/v1/moedas:
+    get:
+      tags: [Moedas]
+      operationId: listarMoedas
+      summary: Lista moedas suportadas
+      description: Moedas para as quais ao menos uma fonte publica cotação.
+      responses:
+        '200':
+          description: Lista de moedas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Moeda'
+              examples:
+                moedas:
+                  value:
+                    - codigo: BRL
+                      nome: Real brasileiro
+                      pais: BR
+                    - codigo: EUR
+                      nome: Euro
+                      pais: EU
+                    - codigo: USD
+                      nome: Dolar americano
+                      pais: US
+        '401':
+          $ref: '#/components/responses/NaoAutorizado'
+        '429':
+          $ref: '#/components/responses/LimiteExcedido'
+        '503':
+          $ref: '#/components/responses/Indisponivel'
+
+  /api/v1/cotacoes/{base}/{destino}:
+    get:
+      tags: [Cotações]
+      operationId: obterCotacaoAtual
+      summary: Cotação atual de um par
+      description: |
+        Busca o par direto; se não existir, o inverso (1 / valor); se não existir, a taxa cruzada via BRL
+        (dados do BCB) e depois via EUR (dados do BCE), com cotações da mesma data.
+      parameters:
+        - $ref: '#/components/parameters/Base'
+        - $ref: '#/components/parameters/Destino'
+      responses:
+        '200':
+          description: Cotação vigente
+          headers:
+            X-Data-Referencia:
+              $ref: '#/components/headers/X-Data-Referencia'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cotacao'
+              examples:
+                direta:
+                  value:
+                    base: USD
+                    destino: BRL
+                    valor: 5.421000
+                    dataHora: '2026-11-20T16:04:18Z'
+                    fonte: BCB
+                cruzada:
+                  value:
+                    base: CNY
+                    destino: MXN
+                    valor: 2.500000
+                    dataHora: '2026-11-20T13:15:00Z'
+                    fonte: 'Cruzada: BCE'
+        '400':
+          $ref: '#/components/responses/RequisicaoInvalida'
+        '401':
+          $ref: '#/components/responses/NaoAutorizado'
+        '404':
+          $ref: '#/components/responses/NaoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteExcedido'
+        '503':
+          $ref: '#/components/responses/Indisponivel'
+
+  /api/v1/cotacoes/{base}/{destino}/historico:
+    get:
+      tags: [Cotações]
+      operationId: obterHistoricoCotacoes
+      summary: Histórico de cotações por período
+      description: |
+        Uma cotação por dia (a última publicada no dia), em ordem cronológica. `dataFim` deve ser maior ou
+        igual a `dataInicio` e o intervalo máximo é de 366 dias.
+      parameters:
+        - $ref: '#/components/parameters/Base'
+        - $ref: '#/components/parameters/Destino'
+        - name: dataInicio
+          in: query
+          required: true
+          description: Data inicial (inclusive), formato AAAA-MM-DD.
+          schema:
+            type: string
+            format: date
+          example: '2026-11-16'
+        - name: dataFim
+          in: query
+          required: true
+          description: Data final (inclusive), formato AAAA-MM-DD.
+          schema:
+            type: string
+            format: date
+          example: '2026-11-20'
+      responses:
+        '200':
+          description: Série histórica
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cotacao'
+              examples:
+                serie:
+                  value:
+                    - base: USD
+                      destino: BRL
+                      valor: 5.810200
+                      dataHora: '2026-11-18T16:08:44Z'
+                      fonte: BCB
+                    - base: USD
+                      destino: BRL
+                      valor: 5.888900
+                      dataHora: '2026-11-19T16:04:18Z'
+                      fonte: BCB
+        '400':
+          $ref: '#/components/responses/RequisicaoInvalida'
+        '401':
+          $ref: '#/components/responses/NaoAutorizado'
+        '404':
+          $ref: '#/components/responses/NaoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteExcedido'
+        '503':
+          $ref: '#/components/responses/Indisponivel'
+
+  /api/v1/indicadores/{pais}:
+    get:
+      tags: [Indicadores]
+      operationId: listarIndicadores
+      summary: Indicadores econômicos do país
+      description: Valor mais recente de cada indicador (INFLACAO e JUROS em %, PIB em US$ correntes).
+      parameters:
+        - $ref: '#/components/parameters/Pais'
+      responses:
+        '200':
+          description: Indicadores do país
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IndicadorEconomico'
+              examples:
+                brasil:
+                  value:
+                    - tipo: INFLACAO
+                      valor: 4.63
+                      periodo: '2026-10-01'
+                    - tipo: JUROS
+                      valor: 13.75
+                      periodo: '2026-11-01'
+                    - tipo: PIB
+                      valor: 2173665655937.27
+                      periodo: '2025-01-01'
+        '400':
+          $ref: '#/components/responses/RequisicaoInvalida'
+        '401':
+          $ref: '#/components/responses/NaoAutorizado'
+        '404':
+          $ref: '#/components/responses/NaoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteExcedido'
+        '503':
+          $ref: '#/components/responses/Indisponivel'
+
+  /api/v1/indices-geopoliticos/{pais}:
+    get:
+      tags: [Índices geopolíticos]
+      operationId: obterIndiceGeopolitico
+      summary: Índice de risco e fator de ajuste mais recentes
+      description: |
+        `indiceRisco` vai de 0 (menor risco) a 100. `fatorAjuste = 1 - indiceRisco / 100 × 0,05`.
+        Para `EU`, o índice é a média dos países da zona do euro ponderada pelo PIB.
+      parameters:
+        - $ref: '#/components/parameters/Pais'
+      responses:
+        '200':
+          description: Índice vigente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndiceGeopolitico'
+              examples:
+                brasil:
+                  value:
+                    pais: BR
+                    indiceRisco: 30.00
+                    fatorAjuste: 0.9850
+                    dataReferencia: '2026-11-20'
+        '400':
+          $ref: '#/components/responses/RequisicaoInvalida'
+        '401':
+          $ref: '#/components/responses/NaoAutorizado'
+        '404':
+          $ref: '#/components/responses/NaoEncontrado'
+        '429':
+          $ref: '#/components/responses/LimiteExcedido'
+        '503':
+          $ref: '#/components/responses/Indisponivel'
+
+components:
+  securitySchemes:
+    chaveApi:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Chave fornecida pela YouPay. Nunca a envie em URL nem em logs.
+
+  parameters:
+    Base:
+      name: base
+      in: path
+      required: true
+      description: Código ISO 4217 da moeda base. Minúsculas são aceitas e normalizadas.
+      schema:
+        $ref: '#/components/schemas/CodigoMoeda'
+      example: USD
+    Destino:
+      name: destino
+      in: path
+      required: true
+      description: Código ISO 4217 da moeda de destino. Minúsculas são aceitas e normalizadas.
+      schema:
+        $ref: '#/components/schemas/CodigoMoeda'
+      example: BRL
+    Pais:
+      name: pais
+      in: path
+      required: true
+      description: Código ISO 3166-1 alfa-2 do país (ou EU para a União Europeia). Minúsculas são aceitas.
+      schema:
+        type: string
+        pattern: '^[A-Za-z]{2}$'
+      example: BR
+
+  headers:
+    X-Data-Referencia:
+      description: Data e hora (ISO 8601, UTC) da cotação usada no cálculo.
+      schema:
+        type: string
+        format: date-time
+      example: '2026-11-20T16:04:18Z'
+    Retry-After:
+      description: Segundos até a próxima requisição ser aceita.
+      schema:
+        type: integer
+        minimum: 0
+      example: 1
+
+  responses:
+    RequisicaoInvalida:
+      description: Requisição inválida (campo ausente, formato errado ou intervalo inválido)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Erro'
+          example:
+            codigo: 400
+            mensagem: 'moedaOrigem: deve ser um código ISO 4217 de 3 letras'
+            dataHora: '2026-11-20T18:00:00Z'
+    NaoAutorizado:
+      description: Chave de API ausente ou inválida
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Erro'
+          example:
+            codigo: 401
+            mensagem: Chave de API ausente ou invalida
+            dataHora: '2026-11-20T18:00:00Z'
+    NaoEncontrado:
+      description: Moeda, país ou dado não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Erro'
+          example:
+            codigo: 404
+            mensagem: 'Moeda nao suportada: ARS'
+            dataHora: '2026-11-20T18:00:00Z'
+    LimiteExcedido:
+      description: Limite de requisições excedido
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Erro'
+          example:
+            codigo: 429
+            mensagem: Limite de requisicoes excedido
+            dataHora: '2026-11-20T18:00:00Z'
+    Indisponivel:
+      description: Dado indisponível ou desatualizado (cotação com mais de 4 dias, fonte sem dados)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Erro'
+          example:
+            codigo: 503
+            mensagem: A cotacao mais recente de USD/BRL e de 2026-11-10, mais antiga que o limite de 4 dias
+            dataHora: '2026-11-20T18:00:00Z'
+
+  schemas:
+    CodigoMoeda:
+      type: string
+      pattern: '^[A-Za-z]{3}$'
+      description: Código ISO 4217. A resposta sempre traz maiúsculas.
+      example: USD
+
+    ConversaoRequest:
+      type: object
+      required: [moedaOrigem, moedaDestino, valor]
+      additionalProperties: false
+      properties:
+        moedaOrigem:
+          type: string
+          pattern: '^[A-Za-z]{3}$'
+          example: USD
+        moedaDestino:
+          type: string
+          pattern: '^[A-Za-z]{3}$'
+          example: BRL
+        valor:
+          type: number
+          exclusiveMinimum: true
+          minimum: 0
+          maximum: 1000000000000
+          description: Valor a converter, maior que zero e no máximo 1e12, até 6 casas decimais.
+          example: 100.00
+        aplicarAjusteGeopolitico:
+          type: boolean
+          default: true
+          example: true
+
+    ConversaoResponse:
+      type: object
+      required: [moedaOrigem, moedaDestino, valorOriginal, taxaCambio, fatorGeopolitico, valorConvertido, dataHora]
+      properties:
+        moedaOrigem:
+          type: string
+          pattern: '^[A-Z]{3}$'
+          example: USD
+        moedaDestino:
+          type: string
+          pattern: '^[A-Z]{3}$'
+          example: BRL
+        valorOriginal:
+          type: number
+          example: 100.00
+        taxaCambio:
+          type: number
+          description: Taxa aplicada, 6 casas decimais.
+          example: 5.421000
+        fatorGeopolitico:
+          type: number
+          minimum: 0
+          exclusiveMinimum: true
+          maximum: 1
+          description: Fator de ajuste, 4 casas decimais. 1.0000 quando o ajuste está desligado.
+          example: 0.9850
+        valorConvertido:
+          type: number
+          description: Valor final nas casas decimais ISO 4217 da moeda de destino.
+          example: 533.97
+        dataHora:
+          type: string
+          format: date-time
+          description: Momento da conversão (UTC).
+          example: '2026-11-20T18:00:00Z'
+
+    Moeda:
+      type: object
+      required: [codigo, nome, pais]
+      properties:
+        codigo:
+          type: string
+          pattern: '^[A-Z]{3}$'
+          example: USD
+        nome:
+          type: string
+          example: Dolar americano
+        pais:
+          type: string
+          pattern: '^[A-Z]{2}$'
+          description: Código ISO 3166-1 alfa-2 do país emissor (EU para o euro).
+          example: US
+
+    Cotacao:
+      type: object
+      required: [base, destino, valor, dataHora, fonte]
+      properties:
+        base:
+          type: string
+          pattern: '^[A-Z]{3}$'
+          example: USD
+        destino:
+          type: string
+          pattern: '^[A-Z]{3}$'
+          example: BRL
+        valor:
+          type: number
+          minimum: 0
+          exclusiveMinimum: true
+          description: Unidades de destino por 1 unidade de base, 6 casas decimais.
+          example: 5.421000
+        dataHora:
+          type: string
+          format: date-time
+          description: Data e hora da publicação da cotação (UTC).
+          example: '2026-11-20T16:04:18Z'
+        fonte:
+          type: string
+          description: 'BCB, BCE, ou "Cruzada: BCB" / "Cruzada: BCE" quando calculada via moeda pivô.'
+          example: BCB
+
+    IndicadorEconomico:
+      type: object
+      required: [tipo, valor, periodo]
+      properties:
+        tipo:
+          type: string
+          enum: [INFLACAO, JUROS, PIB]
+          example: INFLACAO
+        valor:
+          type: number
+          example: 4.63
+        periodo:
+          type: string
+          format: date
+          description: Primeiro dia do período (mês ou ano) a que o valor se refere.
+          example: '2026-10-01'
+
+    IndiceGeopolitico:
+      type: object
+      required: [pais, indiceRisco, fatorAjuste, dataReferencia]
+      properties:
+        pais:
+          type: string
+          pattern: '^[A-Z]{2}$'
+          example: BR
+        indiceRisco:
+          type: number
+          minimum: 0
+          maximum: 100
+          example: 30.00
+        fatorAjuste:
+          type: number
+          minimum: 0
+          exclusiveMinimum: true
+          maximum: 1
+          example: 0.9850
+        dataReferencia:
+          type: string
+          format: date
+          example: '2026-11-20'
+
+    Erro:
+      type: object
+      required: [codigo, mensagem, dataHora]
+      properties:
+        codigo:
+          type: integer
+          example: 400
+        mensagem:
+          type: string
+          example: Requisição inválida
+        dataHora:
+          type: string
+          format: date-time
+          example: '2026-11-20T18:00:00Z'

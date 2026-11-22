@@ -1,0 +1,14 @@
+extends:
+  - - spectral:oas
+    - all
+rules:
+  # Exemplos devem bater com os schemas (pega divergencia entre contrato e exemplo).
+  oas3-valid-media-example: error
+  oas3-valid-schema-example: error
+  operation-description: error
+  operation-operationId: error
+  operation-tags: error
+  # E-mail de contato ainda nao definido pela YouPay (pendencia com o gerente do projeto).
+  contact-properties: off
+  # Tags seguem a ordem do fluxo de uso (conversao primeiro), nao a alfabetica.
+  openapi-tags-alphabetical: off
