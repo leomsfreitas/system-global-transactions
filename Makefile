@@ -79,8 +79,8 @@ gitleaks:
 	docker run --rm $(PWD_DOCKER) zricethezav/gitleaks:v8.28.0 git --redact -v .
 
 trivy:
-	docker run --rm $(PWD_DOCKER) aquasec/trivy:0.67.2 fs --scanners vuln,misconfig,secret --severity HIGH,CRITICAL --exit-code 1 .
-	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.67.2 image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 transacoes-api:local
+	docker run --rm $(PWD_DOCKER) aquasec/trivy:0.76.2 fs --scanners vuln,misconfig,secret --severity HIGH,CRITICAL --exit-code 1 .
+	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.76.2 image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 transacoes-api:local
 
 checkov:
 	docker run --rm $(PWD_DOCKER) bridgecrew/checkov:3.4.3 -d infra --quiet --compact --config-file infra/.checkov.yaml

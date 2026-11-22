@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v5
       - run: docker build --build-arg MODULO=${{ matrix.modulo }} -t transacoes-${{ matrix.modulo }}:${{ github.sha }} .
       - name: Trivy (bloqueia HIGH/CRITICAL com correcao disponivel)
-        run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.67.2 image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 transacoes-${{ matrix.modulo }}:${{ github.sha }}
+        run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.76.2 image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 transacoes-${{ matrix.modulo }}:${{ github.sha }}
       - run: docker save transacoes-${{ matrix.modulo }}:${{ github.sha }} | gzip > imagem-${{ matrix.modulo }}.tar.gz
       - uses: actions/upload-artifact@v5
         with:

@@ -1,0 +1,11 @@
+# Usa as regras padrao do Gitleaks e libera apenas valores publicos conhecidos.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Hashes SHA-256 de chaves de exemplo publicas (nao sao segredos)"
+# sha256("chave-local-de-exemplo"), documentado no README, e sha256("chave-teste"), usado nos testes
+regexes = [
+  '''941f6c003166e9b91f9fa29062dff91189314c7cec26e03af4af16d933d9a1a1''',
+  '''c9648706b05c4ec27abc95d55171c268461eb4f2274ebfca33910b1e724ac22a''',
+]

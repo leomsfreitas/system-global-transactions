@@ -25,11 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Dependencias Maven, Dockerfile e IaC
-        run: docker run --rm -v "$PWD":/w -w /w aquasec/trivy:0.67.2 fs --scanners vuln,misconfig,secret --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 .
+        run: docker run --rm -v "$PWD":/w -w /w aquasec/trivy:0.76.2 fs --scanners vuln,misconfig,secret --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 .
       - name: Build da imagem da API
         run: docker build --build-arg MODULO=api -t transacoes-api:ci .
       - name: Imagem
-        run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.67.2 image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 transacoes-api:ci
+        run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.76.2 image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 transacoes-api:ci
 
   iac:
     name: Checkov (IaC)
