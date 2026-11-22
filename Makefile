@@ -65,13 +65,16 @@ plan: ## terraform plan (exige credenciais AWS; AMBIENTE=dev|prod)
 	  -c "cd infra/ambientes/$(AMBIENTE) && terraform init -input=false && terraform plan -input=false -out=plano.tfplan"
 
 load-test: ## Carga: 500 req/s por 10 min (metas da secao 5.12)
-	docker run --rm -i $(PWD_DOCKER) -e URL=$(URL) -e CHAVE=$(CHAVE) grafana/k6:1.3.0 run --summary-export=testes-carga/resultados/carga.json testes-carga/carga.js
+	docker compose -f docker-compose.yml -f docker-compose.carga.yml up -d --wait api
+	docker run --rm -i --network transacoes_default $(PWD_DOCKER) -e URL=http://api:8080 -e CHAVE=$(CHAVE) grafana/k6:2.3.0 run --summary-export=testes-carga/resultados/carga.json testes-carga/carga.js
 
 stress-test: ## Estresse ate a quebra
-	docker run --rm -i $(PWD_DOCKER) -e URL=$(URL) -e CHAVE=$(CHAVE) grafana/k6:1.3.0 run --summary-export=testes-carga/resultados/estresse.json testes-carga/estresse.js
+	docker compose -f docker-compose.yml -f docker-compose.carga.yml up -d --wait api
+	docker run --rm -i --network transacoes_default $(PWD_DOCKER) -e URL=http://api:8080 -e CHAVE=$(CHAVE) grafana/k6:2.3.0 run --summary-export=testes-carga/resultados/estresse.json testes-carga/estresse.js
 
 soak-test: ## Soak de 30 min
-	docker run --rm -i $(PWD_DOCKER) -e URL=$(URL) -e CHAVE=$(CHAVE) grafana/k6:1.3.0 run --summary-export=testes-carga/resultados/soak.json testes-carga/soak.js
+	docker compose -f docker-compose.yml -f docker-compose.carga.yml up -d --wait api
+	docker run --rm -i --network transacoes_default $(PWD_DOCKER) -e URL=http://api:8080 -e CHAVE=$(CHAVE) grafana/k6:2.3.0 run --summary-export=testes-carga/resultados/soak.json testes-carga/soak.js
 
 seguranca: gitleaks trivy checkov ## Varreduras de seguranca (segredos, dependencias, imagem, IaC)
 

@@ -1,0 +1,6 @@
+# Sobreposicao para testes de carga: desliga o limite local por chave (em producao quem limita e o
+# usage plan do API Gateway). Uso: docker compose -f docker-compose.yml -f docker-compose.carga.yml up -d api
+services:
+  api:
+    environment:
+      SEGURANCA_LIMITEREQUISICOES_HABILITADO: "false"
