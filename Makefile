@@ -1,7 +1,7 @@
 # Atalhos do projeto. Ferramentas externas rodam em Docker (nada instalado no host alem de Java 21 e Docker).
 SHELL := /bin/bash
 PWD_DOCKER := -v "$(CURDIR)":/w -w /w
-TF := docker run --rm $(PWD_DOCKER) -e TF_IN_AUTOMATION=1 hashicorp/terraform:1.13.4
+TF := docker run --rm $(PWD_DOCKER) -e TF_IN_AUTOMATION=1 hashicorp/terraform:1.17.1
 AMBIENTE ?= dev
 URL ?= http://host.docker.internal:8080
 CHAVE ?= chave-local-de-exemplo
@@ -53,15 +53,15 @@ lint-java:
 lint-infra: ## terraform fmt/validate e tflint
 	$(TF) fmt -check -recursive infra
 	for d in infra/ambientes/dev infra/ambientes/prod; do \
-	  docker run --rm $(PWD_DOCKER) --entrypoint sh hashicorp/terraform:1.13.4 -c "cd $$d && terraform init -backend=false -input=false >/dev/null && terraform validate" || exit 1; \
+	  docker run --rm $(PWD_DOCKER) --entrypoint sh hashicorp/terraform:1.17.1 -c "cd $$d && terraform init -backend=false -input=false >/dev/null && terraform validate" || exit 1; \
 	done
-	docker run --rm $(PWD_DOCKER) ghcr.io/terraform-linters/tflint:v0.59.1 --chdir=infra --recursive
+	docker run --rm $(PWD_DOCKER) -e TFLINT_PLUGIN_DIR=/w/.tflint.d --entrypoint sh ghcr.io/terraform-linters/tflint:v0.59.1 -c "tflint --init --config=/w/infra/.tflint.hcl >/dev/null && tflint --chdir=infra --recursive --config=/w/infra/.tflint.hcl"
 
 lint-actions: ## actionlint nos workflows
 	docker run --rm $(PWD_DOCKER) rhysd/actionlint:1.7.7 -color
 
 plan: ## terraform plan (exige credenciais AWS; AMBIENTE=dev|prod)
-	docker run --rm $(PWD_DOCKER) -e AWS_PROFILE -e AWS_REGION -v $$HOME/.aws:/root/.aws:ro --entrypoint sh hashicorp/terraform:1.13.4 \
+	docker run --rm $(PWD_DOCKER) -e AWS_PROFILE -e AWS_REGION -v $$HOME/.aws:/root/.aws:ro --entrypoint sh hashicorp/terraform:1.17.1 \
 	  -c "cd infra/ambientes/$(AMBIENTE) && terraform init -input=false && terraform plan -input=false -out=plano.tfplan"
 
 load-test: ## Carga: 500 req/s por 10 min (metas da secao 5.12)
@@ -83,7 +83,7 @@ trivy:
 	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.67.2 image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 transacoes-api:local
 
 checkov:
-	docker run --rm $(PWD_DOCKER) bridgecrew/checkov:3.2.484 -d infra --quiet --compact --config-file infra/.checkov.yaml
+	docker run --rm $(PWD_DOCKER) bridgecrew/checkov:3.4.3 -d infra --quiet --compact --config-file infra/.checkov.yaml
 
 zap: ## DAST com OWASP ZAP contra a API local (usa a spec)
 	mkdir -p docs/04-testes/zap && chmod 777 docs/04-testes/zap

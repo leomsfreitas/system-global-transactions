@@ -1,0 +1,5 @@
+# Copie para terraform.tfvars (nao versionado). Sem segredos aqui.
+dominio         = "api.transacoes.youpay.com.br"
+certificado_arn = "arn:aws:acm:sa-east-1:000000000000:certificate/definir"
+clientes        = ["cliente-piloto-1"]
+emails_alarme   = ["plantao@exemplo.com"]

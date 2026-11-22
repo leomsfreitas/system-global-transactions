@@ -35,3 +35,4 @@ crash.log
 # Resultados de ferramentas
 testes-carga/resultados/
 zap-report*
+.tflint.d/

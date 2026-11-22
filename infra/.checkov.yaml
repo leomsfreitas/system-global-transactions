@@ -1,0 +1,32 @@
+# Excecoes justificadas (ver docs/04-testes/auditoria-seguranca.md)
+skip-check:
+  - CKV_AWS_2    # ALB interno em HTTP dentro da VPC (Gateway -> VPC Link -> ALB); risco aceito, ADR 0017
+  - CKV_AWS_103  # idem: listener HTTP interno
+  - CKV2_AWS_20  # idem: redirecionamento HTTP->HTTPS nao se aplica a ALB interno
+  - CKV_AWS_59   # metodo sem autorizer IAM/Cognito: autenticacao por chave de API (api_key_required)
+  - CKV2_AWS_53  # validacao de requisicao feita na aplicacao contra a spec OpenAPI
+  - CKV_AWS_120  # cache do API Gateway desligado: dados mudam a cada 15 min e o Redis ja faz cache
+  - CKV2_AWS_29  # WAF associado via aws_wafv2_web_acl_association (falso positivo de grafo entre modulos)
+  - CKV2_AWS_51  # mTLS no dominio: clientes usam chave de API, nao certificado de cliente
+  - CKV_AWS_158  # log groups usam a chave KMS do ambiente via variavel (falso positivo)
+  - CKV_AWS_338  # retencao de logs de 90 dias definida pela politica do projeto (nao 1 ano)
+  - CKV_AWS_149  # segredos usam KMS gerenciado pelo cliente via variavel (falso positivo)
+  - CKV2_AWS_57  # rotacao automatica: senhas de banco rotacionadas pelo runbook (pos-projeto)
+  - CKV2_AWS_62  # notificacao de eventos do bucket de state nao necessaria
+  - CKV_AWS_144  # replicacao entre regioes do bucket de state fora do escopo
+  - CKV_AWS_18   # access log do bucket de state fora do escopo
+  - CKV2_AWS_61  # lifecycle do bucket de state: versoes antigas sao mantidas de proposito
+  - CKV_AWS_336  # readonlyRootFilesystem definido em container_definitions (falso positivo)
+  - CKV_AWS_91   # access logs do ALB ligados por variavel (bucket_logs) em prod
+  - CKV2_AWS_28  # WAF fica no API Gateway; o ALB e interno e nao recebe trafego publico
+  - CKV_AWS_150  # deletion protection do ALB ligada por variavel em prod
+  - CKV_AWS_157  # Multi-AZ do RDS ligado por variavel em prod
+  - CKV_AWS_293  # deletion protection do RDS ligada por variavel em prod
+  - CKV_AWS_31   # transit encryption + auth token configurados (falso positivo sobre auth em grafo)
+  - CKV_AWS_354  # Performance Insights com KMS via variavel (falso positivo)
+  - CKV_AWS_260  # falso positivo: a regra usa referenced_security_group_id (VPC Link), nao 0.0.0.0/0
+  - CKV_AWS_378  # mesmo caso do CKV_AWS_2: ALB interno em HTTP
+  - CKV_AWS_225  # mesmo caso do CKV_AWS_120: cache do Gateway desligado
+  - CKV2_AWS_50  # failover Multi-AZ do Redis ligado por variavel em prod (replicas = 1)
+  - CKV2_AWS_5   # falso positivo: SG do worker e usado pelo EventBridge Scheduler (ecs_parameters) e pela tarefa de migracao
+  - CKV2_AWS_77  # falso positivo de grafo: a regra AWSManagedRulesKnownBadInputsRuleSet (Log4j) existe e o CKV_AWS_192 passa
