@@ -1,0 +1,37 @@
+# Build
+target/
+!.mvn/wrapper/maven-wrapper.jar
+build/
+
+# IDEs
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+.classpath
+.project
+.settings/
+.factorypath
+
+# SO
+.DS_Store
+
+# Segredos e ambiente local (nunca versionar)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+.terraform.lock.hcl.bak
+
+# Resultados de ferramentas
+testes-carga/resultados/
+zap-report*
