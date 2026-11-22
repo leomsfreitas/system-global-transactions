@@ -1,0 +1,2859 @@
+{
+	"@programName": "ZAP",
+	"@version": "2.16.1",
+	"@generated": "Sun, 22 Nov 2026 21:16:32",
+	"created": "2026-11-22T21:16:32.173696387Z",
+	"site":[ 
+		{
+			"@name": "http://host.docker.internal:8080",
+			"@host": "host.docker.internal",
+			"@port": "8080",
+			"@ssl": "false",
+			"alerts": [ 
+				{
+					"pluginid": "10116",
+					"alertRef": "10116",
+					"alert": "ZAP is Out of Date",
+					"name": "ZAP is Out of Date",
+					"riskcode": "1",
+					"confidence": "3",
+					"riskdesc": "Low (High)",
+					"desc": "<p>The version of ZAP you are using to test your app is out of date and is no longer being updated.</p><p>The risk level is set based on how out of date your ZAP version is.</p>",
+					"instances":[ 
+						{
+							"id": "8",
+							"uri": "http://host.docker.internal:8080/api/v1/indicadores/BR",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "The latest version of ZAP is 2.17.0"
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Download the latest version of ZAP from https://www.zaproxy.org/download/ and install it.</p>",
+					"otherinfo": "<p>The latest version of ZAP is 2.17.0</p>",
+					"reference": "<p>https://www.zaproxy.org/download/</p>",
+					"cweid": "1104",
+					"wascid": "45",
+					"sourceid": "11"
+				},
+				{
+					"pluginid": "100000",
+					"alertRef": "100000",
+					"alert": "A Client Error response code was returned by the server",
+					"name": "A Client Error response code was returned by the server",
+					"riskcode": "0",
+					"confidence": "3",
+					"riskdesc": "Informational (High)",
+					"desc": "<p>A response code of 404 was returned by the server.</p><p>This may indicate that the application is failing to handle unexpected input correctly.</p><p>Raised by the 'Alert on HTTP Response Code Error' script</p>",
+					"instances":[ 
+						{
+							"id": "9",
+							"uri": "http://host.docker.internal:8080",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "599",
+							"uri": "http://host.docker.internal:8080/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "0",
+							"uri": "http://host.docker.internal:8080/8393169182228426735",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "10",
+							"uri": "http://host.docker.internal:8080/api",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "601",
+							"uri": "http://host.docker.internal:8080/api/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "1",
+							"uri": "http://host.docker.internal:8080/api/708876662260982432",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "12",
+							"uri": "http://host.docker.internal:8080/api/v1",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "156",
+							"uri": "http://host.docker.internal:8080/api/v1",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "604",
+							"uri": "http://host.docker.internal:8080/api/v1/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "2",
+							"uri": "http://host.docker.internal:8080/api/v1/3925607775852852066",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "705",
+							"uri": "http://host.docker.internal:8080/api/v1/actuator/health",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "20",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "158",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "605",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "3",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/1403349172614350059",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "23",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "159",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "608",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "4",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/5280926904433160751",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "607",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "5",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/4862861622469736317",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "609",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "428",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%22%27&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "289",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%22%2Bresponse.write%28200%2C345*85%2C743%29%2B%22&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "726",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%22%2F%3E%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E%3C%21--&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "277",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%22%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B%24var%3D%22&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "143",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%22%3E%3C%21--%23EXEC+cmd%3D%22dir+%5C%22--%3E%3C&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "139",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%22%3E%3C%21--%23EXEC+cmd%3D%22ls+%2F%22--%3E%3C&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "167",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%22&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "563",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%23%7B%25x%28sleep+15%29%7D&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "550",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%23%7Bglobal.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%7D&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "545",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%23set%28%24engine%3D%22%22%29%0A%23set%28%24proc%3D%24engine.getClass%28%29.forName%28%22java.lang.Runtime%22%29.getRuntime%28%29.exec%28%22sleep+15%22%29%29%0A%23set%28%24null%3D%24proc.waitFor%28%29%29%0A%24%7Bnull%7D&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "286",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%24%7B%40print%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%7D%5C&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "283",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%24%7B%40print%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%7D&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "556",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%24%7B__import__%28%22subprocess%22%29.check_output%28%22sleep+15%22%2C+shell%3DTrue%29%7D&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "173",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%27%28&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "281",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%27%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B%24var%3D%27&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "161",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%27&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "292",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%2Bresponse.write%28%7B0%7D*%7B1%7D%29%2B&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "170",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3B&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "288",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "141",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3C%21--%23EXEC+cmd%3D%22dir+%5C%22--%3E&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "135",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3C%21--%23EXEC+cmd%3D%22ls+%2F%22--%3E&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "430",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3C%21--&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "542",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3C%23assign+ex%3D%22freemarker.template.utility.Execute%22%3Fnew%28%29%3E+%24%7B+ex%28%22sleep+15%22%29+%7D&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "560",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3C%25%3D%25x%28sleep+15%29%25%3E&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "548",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3C%25%3D+global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%25%3E&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "719",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3C&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "730",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3Cxsl%3Avalue-of+select%3D%22document%28%27http%3A%2F%2Fhost.docker.internal%3A22%27%29%22%2F%3E&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "733",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3Cxsl%3Avalue-of+select%3D%22php%3Afunction%28%27exec%27%2C%27erroneous_command+2%3E%26amp%3B1%27%29%22%2F%3E&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "728",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E%3C%21--&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "722",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "732",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%3Cxsl%3Avariable+name%3D%22rtobject%22+select%3D%22runtime%3AgetRuntime%28%29%22%2F%3E%0A%3Cxsl%3Avariable+name%3D%22process%22+select%3D%22runtime%3Aexec%28%24rtobject%2C%27erroneous_command%27%29%22%2F%3E%0A%3Cxsl%3Avariable+name%3D%22waiting%22+select%3D%22process%3AwaitFor%28%24process%29%22%2F%3E%0A%3Cxsl%3Avalue-of+select%3D%22%24process%22%2F%3E&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "433",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%5D%5D%3E&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "554",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%7B%7B%22%22.__class__.__mro__%5B1%5D.__subclasses__%28%29%5B157%5D.__repr__.__globals__.get%28%22__builtins__%22%29.get%28%22__import__%22%29%28%22subprocess%22%29.check_output%28%22sleep+15%22%29%7D%7D&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "547",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%7B%7B%3D+global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29+%7D%7D&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "558",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%7B%7B__import__%28%22subprocess%22%29.check_output%28%22sleep+15%22%2C+shell%3DTrue%29%7D%7D&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "552",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%7B%7Brange.constructor%28%22return+eval%28%5C%22global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%5C%22%29%22%29%28%29%7D%7D&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "565",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=%7Bsystem%28%22sleep+15%22%29%7D&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "332",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%22%26cat+%2Fetc%2Fpasswd%26%22&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "347",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%22%26type+%25SYSTEMROOT%25%5Cwin.ini%26%22&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "334",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%22%3Bcat+%2Fetc%2Fpasswd%3B%22&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "358",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%22%3Bget-help&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "348",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%22%7Ctype+%25SYSTEMROOT%25%5Cwin.ini&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "169",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%22&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "182",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%22+AND+%221%22%3D%221%22+--+&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "187",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%22+AND+%221%22%3D%221&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "194",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%22+UNION+ALL+select+NULL+--+&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "327",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%26cat+%2Fetc%2Fpasswd%26&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "343",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%26type+%25SYSTEMROOT%25%5Cwin.ini&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "337",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%27%26cat+%2Fetc%2Fpasswd%26%27&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "350",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%27%26type+%25SYSTEMROOT%25%5Cwin.ini%26%27&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "174",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%27%28&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "198",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%27%29+UNION+ALL+select+NULL+--+&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "339",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%27%3Bcat+%2Fetc%2Fpasswd%3B%27&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "361",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%27%3Bget-help&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "352",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%27%7Ctype+%25SYSTEMROOT%25%5Cwin.ini&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "164",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%27&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "180",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%27+AND+%271%27%3D%271%27+--+&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "185",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%27+AND+%271%27%3D%271&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "191",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%27+UNION+ALL+select+NULL+--+&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "196",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%29+UNION+ALL+select+NULL+--+&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "172",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%3B&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "331",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%3Bcat+%2Fetc%2Fpasswd%3B&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "356",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%3Bget-help&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "363",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%3Bget-help+%23&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "345",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16%7Ctype+%25SYSTEMROOT%25%5Cwin.ini&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "206",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%22",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "434",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%22%27",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "304",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%22%2Bresponse.write%28980%2C362*748%2C145%29%2B%22",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "737",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%22%2F%3E%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E%3C%21--",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "295",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%22%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B%24var%3D%22",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "150",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%22%3E%3C%21--%23EXEC+cmd%3D%22dir+%5C%22--%3E%3C",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "148",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%22%3E%3C%21--%23EXEC+cmd%3D%22ls+%2F%22--%3E%3C",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "584",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%23%7B%25x%28sleep+15%29%7D",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "573",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%23%7Bglobal.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%7D",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "568",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%23set%28%24engine%3D%22%22%29%0A%23set%28%24proc%3D%24engine.getClass%28%29.forName%28%22java.lang.Runtime%22%29.getRuntime%28%29.exec%28%22sleep+15%22%29%29%0A%23set%28%24null%3D%24proc.waitFor%28%29%29%0A%24%7Bnull%7D",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "298",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%24%7B%40print%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%7D",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "301",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%24%7B%40print%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%7D%5C",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "579",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%24%7B__import__%28%22subprocess%22%29.check_output%28%22sleep+15%22%2C+shell%3DTrue%29%7D",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "201",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%27",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "214",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%27%28",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "297",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%27%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B%24var%3D%27",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "307",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%2Bresponse.write%28%7B0%7D*%7B1%7D%29%2B",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "210",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%3B",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "302",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "734",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%3C",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "435",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%3C%21--",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "149",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%3C%21--%23EXEC+cmd%3D%22dir+%5C%22--%3E",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "146",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%3C%21--%23EXEC+cmd%3D%22ls+%2F%22--%3E",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "566",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%3C%23assign+ex%3D%22freemarker.template.utility.Execute%22%3Fnew%28%29%3E+%24%7B+ex%28%22sleep+15%22%29+%7D",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "582",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%3C%25%3D%25x%28sleep+15%29%25%3E",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "571",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%3C%25%3D+global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%25%3E",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "735",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "436",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%5D%5D%3E",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "576",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%7B%7B%22%22.__class__.__mro__%5B1%5D.__subclasses__%28%29%5B157%5D.__repr__.__globals__.get%28%22__builtins__%22%29.get%28%22__import__%22%29%28%22subprocess%22%29.check_output%28%22sleep+15%22%29%7D%7D",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "570",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%7B%7B%3D+global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29+%7D%7D",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "580",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%7B%7B__import__%28%22subprocess%22%29.check_output%28%22sleep+15%22%2C+shell%3DTrue%29%7D%7D",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "575",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%7B%7Brange.constructor%28%22return+eval%28%5C%22global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%5C%22%29%22%29%28%29%7D%7D",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "586",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=%7Bsystem%28%22sleep+15%22%29%7D",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "175",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "208",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%22",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "372",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%22%26cat+%2Fetc%2Fpasswd%26%22",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "386",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%22%26type+%25SYSTEMROOT%25%5Cwin.ini%26%22",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "374",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%22%3Bcat+%2Fetc%2Fpasswd%3B%22",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "396",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%22%3Bget-help",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "388",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%22%7Ctype+%25SYSTEMROOT%25%5Cwin.ini",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "233",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%22+AND+%221%22%3D%221",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "227",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%22+AND+%221%22%3D%221%22+--+",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "239",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%22+UNION+ALL+select+NULL+--+",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "368",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%26cat+%2Fetc%2Fpasswd%26",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "381",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%26type+%25SYSTEMROOT%25%5Cwin.ini",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "204",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%27",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "375",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%27%26cat+%2Fetc%2Fpasswd%26%27",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "389",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%27%26type+%25SYSTEMROOT%25%5Cwin.ini%26%27",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "215",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%27%28",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "242",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%27%29+UNION+ALL+select+NULL+--+",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "378",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%27%3Bcat+%2Fetc%2Fpasswd%3B%27",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "398",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%27%3Bget-help",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "392",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%27%7Ctype+%25SYSTEMROOT%25%5Cwin.ini",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "230",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%27+AND+%271%27%3D%271",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "224",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%27+AND+%271%27%3D%271%27+--+",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "237",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%27+UNION+ALL+select+NULL+--+",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "241",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%29+UNION+ALL+select+NULL+--+",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "211",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%3B",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "369",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%3Bcat+%2Fetc%2Fpasswd%3B",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "395",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%3Bget-help",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "400",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%3Bget-help+%23",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "384",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20%7Ctype+%25SYSTEMROOT%25%5Cwin.ini",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "228",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20+AND+1%3D1",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "223",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20+AND+1%3D1+--+",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "235",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20+UNION+ALL+select+NULL+--+",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "102",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2833516856534940305.owasp.org",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "108",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=5%3BURL%3D%27https%3A%2F%2F2833516856534940305.owasp.org%27",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "115",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=5%3BURL%3D%27https%3A%2F%2F2833516856534940305.owasp.org%2F%3F2026-11-20%27",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "686",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=any%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "681",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=any%0D%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "690",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=any%0D%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407%0D%0A",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "687",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=any%3F%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "684",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=any%3F%0D%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "692",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=any%3F%0D%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407%0D%0A",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "365",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=cat+%2Fetc%2Fpasswd",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "393",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=get-help",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "119",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=http%3A%2F%2F%5C2833516856534940305.owasp.org",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "52",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=http%3A%2F%2Fwww.google.com",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "47",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=http%3A%2F%2Fwww.google.com%2F",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "53",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=http%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3DZAP",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "50",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=http%3A%2F%2Fwww.google.com%3A80%2F",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "56",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=http%3A%2F%2Fwww.google.com%3A80%2Fsearch%3Fq%3DZAP",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "117",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=https%3A%2F%2F%5C2833516856534940305.owasp.org",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "107",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=https%3A%2F%2F2833516856534940305%252eowasp%252eorg",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "105",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=https%3A%2F%2F2833516856534940305.owasp.org",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "113",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=https%3A%2F%2F2833516856534940305.owasp.org%2F%3F2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "628",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=qPmepXoNAbgmlAimKxjfQlSYeMEJuTVCWAiLuQPiWAqBRhLVGTGVCQyPjyfxMIvQYYuvSwJajhQgDupiJqOrcCSfHZDlvDuIWQOwVeUrpxqkNyFNOILRIZcIJxLItOmhyIAVBJXQtehGRxSbawacAhXsHEQviHLJgOBqQiVKlwBGYZuSPKmRmtTWtXwRDnebnwbodSCKOUQJUKkhYMJJaFGTyCcGdmncrrwxJgATwRFHugahIlhHUObMJpSQYKpaDTTKveEZlMkFEEoxkkZBalgeJqQnsrbkgGxjbGGgQpADAprQaIMOttUfgTIZNEpEbkykRuUiLoEBlUmxHVbhJaTiuBBQZksHOUuLyELpFlolMevJGxQQANENiWPGBvlelkTvAsbBwSaWjfFCegZdrTylUyhPNfKIKNkVIvMESrFDTgjxvnIpKjUPhuEOPCtUrYRfLNvfBvsOrQcHuEdxbcPAgGxwATuVexSSykHIYyCAXisRGsEmvLTwNtGFRnVPcQHproSJaJjKDRXioQGBNZlQxxSMsOVEKZYPBOqokuyfOKHVERNbanFiCAmZjtlKmailLhgJClMSxOEGSnuAPRLPElNbyYIWnibsGwZUSSNTUMVYkuGAshdnhmwpCRfjMxTmmryuLANQcvicwQjDiFHgxuZSkNefxnqSoVDXPgRBeErtdvdKFhsdYfoqntDYcnTBYcMOVGUAvkovaTRpeSTXAbtnPWIhnLIkjMulbdQcWYnDwXetusJjBHKyqwdAhjFMejdbscNCagrdBNdaKtQTdWMwoYUQaIBxhvFXblvYKhIiCHnwmLMpXEeOZrWPKeHuYresBPdLmZmNeixvrmqdfPrthjYOhoObOyBGOybuftWfCnkfiYAkWRMAdPcXRCoArBToMRXeSReLntDYIFQQPrCnskcdQMhpMCXZitDwFGdSmPVwMEyIMQncrxRVteJwxgSIRJqhYcvgPMoTjJvZjgaFhkkmTalNFAtvpGKSrxDXcyVnwaomUcfapqdyDeuTjiOPbnBwOppfiUJyVHtqbwofvpaBOkjtGTfhaUypAsycdHybTgIVRPkQmVtuXltsApHFphgOsAqJWiVxsoxwSxMbCRPJfyCScbEBZrNKbxqBwgJgxiInyjfUvkGPilLHtRZdrXBZLatbTukYGdHYIhaOdvYlIIDpCyDyuVfQvMLTSIlEgFSEwobMMULRXQvKsUhFWUJoTQZkxxatgImkeBXZTxoAYnkgLsrFjgvPgQVBJeGoGcejMVlpoSeqbFiygDYGSjNHelElPQfnVVBfyHIpOnsquPcWnyqpJOdMIiJDbyljNMuPdjQMHnDVwNtplcPGlnAacWxDaEuQhGRtfcZdWLyoKXdfTGYvGoobywekeWkluWvbiNhcPiEsTTlOKwqSjmVHsuAdpiboRkJpAJMVmCRbMxRXOfDepOFJMmVVZfpAluEkFJXsUMiRvlDekshEBjGRLElntwONsdWdLQBSVaXmMRtkQrwfircSSqXVEQwSuHCjTTmbdgQsyuljgKqMjVFDrhnjyiXShHOavEWoFDFxTBoPEvYuhDMnIpIEyMggGHtNEUZfexOOsSoBjfHgaRGrwChXdLhEqxEqWgasGnoVwjXhfJelilWgwsNRBLLxkEPGvSbxVrvlirZvpAMaDFbttBMmyCbcxNbbQeKWnXeBFbHjdixgfjWBtSornnZOZfaqYiUrqKfUsjWLUKquUtvVaDuqGevJyxfrmjnQFLJiledMLkpgJLVXUdttEwgTsDteFLPAsSslWKqVvtjwCXCPJPqkXNkOpDYwfwpmqdoaQraimBnoMSvcvIjJCSixpqpPvwkgoydqQVmEjbuqeyrWPPEWehfIkrVKfhjcGDldadyoAJSoUHtYIEKixQlOjlWvdUdlIUMfPnhwCclbslfEamGpQyOfQZrdDpgOvdUbyeZdrsfLaXfoSEmYrZpGQnwbBBAQEEhueFyqtcZFPbBeMnljjAFqBbwOEEfYejIpPgYovTyfaGojRqixAdCUdQxLYlTyKxqrrwngUSMKqhRFkljNQXSJXjkCNWhsPBTQerpoFsHlmWrKIujKuOAt",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "309",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=response.write%28980%2C362*748%2C145%29",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "680",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=Set-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "736",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=system-property%28%27xsl%3Avendor%27%29%2F%3E",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "380",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=type+%25SYSTEMROOT%25%5Cwin.ini",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "111",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=URL%3D%27http%3A%2F%2F2833516856534940305.owasp.org%27",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "61",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=www.google.com",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "57",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=www.google.com%2F",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "63",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=www.google.com%2Fsearch%3Fq%3DZAP",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "60",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=www.google.com%3A80%2F",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "66",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=www.google.com%3A80%2Fsearch%3Fq%3DZAP",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "648",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=ZAP",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "649",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=ZAP%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%0A",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "650",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=ZAP+%251%21s%252%21s%253%21s%254%21s%255%21s%256%21s%257%21s%258%21s%259%21s%2510%21s%2511%21s%2512%21s%2513%21s%2514%21s%2515%21s%2516%21s%2517%21s%2518%21s%2519%21s%2520%21s%2521%21n%2522%21n%2523%21n%2524%21n%2525%21n%2526%21n%2527%21n%2528%21n%2529%21n%2530%21n%2531%21n%2532%21n%2533%21n%2534%21n%2535%21n%2536%21n%2537%21n%2538%21n%2539%21n%2540%21n%0A",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "498",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%23%7B6618*6928%7Dzj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "511",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%23set%28%24x%3D3011*7559%29%24%7Bx%7Dzj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "496",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%24%7B7070*2720%7Dzj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "508",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%3C%25%3D4115*4322%25%3Ezj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "513",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%3Cp+th%3Atext%3D%22%24%7B3845*7652%7D%22%3E%3C%2Fp%3Ezj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "501",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%7B%236687*2616%7Dzj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "503",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%7B%409053*2293%7Dzj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "515",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%7B%40math+key%3D%221111%22+method%3D%22multiply%22+operand%3D%224894%22%2F%7Dzj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "506",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%7B%7B%3D5520*5089%7D%7Dzj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "505",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%7B%7B3282*9384%7D%7Dzj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "517",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%7B%7B45770%7Cadd%3A19670%7D%7Dzj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "519",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%7B%7Bprint+%226873%22+%225185%22%7D%7Dzj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "494",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj%7B6347*6635%7Dzj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "492",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=zj+9622*4837+zj",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "183",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16+AND+1%3D1&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "178",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16+AND+1%3D1+--+&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "189",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16+UNION+ALL+select+NULL+--+&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "84",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2833516856534940305.owasp.org&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "90",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=5%3BURL%3D%27https%3A%2F%2F2833516856534940305.owasp.org%27&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "97",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=5%3BURL%3D%27https%3A%2F%2F2833516856534940305.owasp.org%2F%3F2026-11-16%27&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "671",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=any%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "675",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=any%0D%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407%0D%0A&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "666",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=any%0D%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "673",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=any%3F%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "676",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=any%3F%0D%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407%0D%0A&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "669",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=any%3F%0D%0ASet-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "326",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=cat+%2Fetc%2Fpasswd&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "355",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=get-help&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "100",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=http%3A%2F%2F%5C2833516856534940305.owasp.org&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "27",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=http%3A%2F%2Fwww.google.com%2F&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "33",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=http%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3DZAP&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "28",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=http%3A%2F%2Fwww.google.com%3A80%2F&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "35",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=http%3A%2F%2Fwww.google.com%3A80%2Fsearch%3Fq%3DZAP&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "31",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=http%3A%2F%2Fwww.google.com&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "98",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=https%3A%2F%2F%5C2833516856534940305.owasp.org&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "88",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=https%3A%2F%2F2833516856534940305%252eowasp%252eorg&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "94",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=https%3A%2F%2F2833516856534940305.owasp.org%2F%3F2026-11-16&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "86",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=https%3A%2F%2F2833516856534940305.owasp.org&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "626",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=lBBxTiaHLGlEWWfKgFahMNIJyTEcilfqcLrgwDnpniMPqHSdsmJggxXmKmhlcVMDXaBFlKrMQDNlxYlXvYcwgccbudBfvcAFxPDRlOKDEcquiKBZwvgIpDMDNscZUYLjJqummYyoxAJdZfrSvndTCAfoiAagxvenOhiIZPTIlIYoDRWrMMZQCwDkOjbwGukvfvPUpncTkLdqFHmLLUCDlrGFuWJwdiDoYLcyExdWdnoNIgikjyUNqSQTqbkkZKbCgabPlmeFuTBIPZkpVIhCNdKdtZRldfFOMANBHRXIcudRyTyMXhHbsEucHuykmvnvJbkRAkAiNRpBcGjqOoZYEAwXdGYctoyVtZPevAeLiIZkymaOymGLtPIxrOOPKrrfBEKEfFXhAYjGxRkVpKuXFKtfKJTEHMQHyvBQjaDqkVYSovYZuVkgkgpTiMLxyaxGUdKsAqOtWIfMyrhTvSIfbIjMgikgiTMiNiEQqRixqEuGxbMgWrDjLxOmpZLAjiCqMsgiohVoAHDMiBKVOCaBERWnlpWdtqBPGXCONCtwAbnRjBBJiUMUmJUDRKyGOcVidCbCowAiDOkGfftqlnSTAZcljVpoyHZMedpVkouamHBBMhTedJraxNNWrhHkujQeOsdoNmKPArHJVFQFsrvppvuiftBUOnhjhgiaSmboaXBpbXyBusZhcquQnpAHVVmiobiGZXQJhAMFpSKhMdhgOAnODhiCxjARUiIsybRNCNkBelPEoqSIjWuYTVKdIpHlybxPhxPproaKMoxycJVeqTVBVxuhtatdZrcpxuvJmLNKfPGXMwPyWEHdkCHfZGvJnNyTXLLDZpnLkNYLsnLIAqhTAGZBluovhMdMrnnAhJOTxGJWuDxcejRUQCpxtAFiqZoBCEvpiduxQYWojvACaLBlGvFOLLRcYwTjHylOaZOEZHIdFhPlQqyDjfHoSgvPfELbWlXhtdAowCGNnrhgikTRAtWUATjhnyBBAunuxaHjvnAMVlqQjqhAKkfoWaeVcXbUCnAbCLWASjycnECRyaGbevUydoPwqWWwuanWZCoYmPCOGwklcFuDuRcWBWqlgHODuLkECHAmEMhAmdxCaBDGIbuwUUEysKLDgsKjMNkClsitJaaQKAKAPrpZcXRmANVFqlTxoCdquEryEXQsklckesQQuAjnAyxNBRrKAvUCPmkNnnQgeYJfcxOCAICdWSkmojWAWSMANmPaxFavuoKbfwAoNnadmajldOSqoKKNlilNbiuolVsHbJdsFJtduaFZOrlbhomfQpKXaZJeSXnJbRVVvwaDPPkGPpeffswiZQcULMTjroCPgMGhrqxLwFIEElCTDmOrXsDorniCoRtBwjbnkOrtufNlVVqPeYkKUkNRKwBRoHpmJJZqnTvlgGnJJjlmVfopSntJJyHNdQDBEXLKeGrcMUavfkqRvcZSrBfBUlqMwuvwupKQgJHGqBVampUwtDjGFugdZSEPuvEstEXELCeuBeiMFgxsHTgunbcsbPhuhVMkEhRbNyGWyedyEbEdiRRBsRhXoMURVyrdsQaCuNElrNWVIeKDWgGmAwlXXaSjBrAYMsNhOMelvtlgfeMSEAAfAsGXHxvnYdTHUPTPwYFjHBhTqeAUpKsHevJOUalkQMGxablnYVFZkblIpYsnLfstVJeLaWyTQvevLLWqJbNpZxewYPcVkWRTgpMpfactPspBaLLooOCNKDPMtLPEbnWfiYtnheaHYDobNvjaRsUSBafsqpSXvUkMTmJIfNxnescjFqRrjqtdZBDENVuuETgECeBcSfjsZOixkPLxkYGRtRSUpuwBRUGDsBwUPkcbBMEcQhZWsYBycNhXTguHHqsyDuRNjOZHidSvMfUnZlcBCQkFybocrnvhfaikCkjPLYoaeBYfxSPOtxxuDMVowPySCTZaDvbGHAlFaTEvpZFuviQVYSPcOuYSYJtddGQdoBcnjgRjVLxwrsDauXYNmXkFwudLUWqJGDcUJyYrLjpphGJKoSughoqrektpBQIbypNEvDcgAcYdEPVeRqiZSQguaxkUVdGkhKNYPQwywiPOKDQkJOoEuNrPyJxXDowb&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "293",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=response.write%28200%2C345*85%2C743%29&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "663",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=Set-cookie%3A+Tamper%3Dc963643b-56b7-4383-aee0-c2cb09997407&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "723",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=system-property%28%27xsl%3Avendor%27%29%2F%3E&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "340",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=type+%25SYSTEMROOT%25%5Cwin.ini&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "92",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=URL%3D%27http%3A%2F%2F2833516856534940305.owasp.org%27&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "37",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=www.google.com%2F&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "44",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=www.google.com%2Fsearch%3Fq%3DZAP&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "40",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=www.google.com%3A80%2F&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "45",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=www.google.com%3A80%2Fsearch%3Fq%3DZAP&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "42",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=www.google.com&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "644",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=ZAP%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%0A&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "642",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=ZAP&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "646",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=ZAP+%251%21s%252%21s%253%21s%254%21s%255%21s%256%21s%257%21s%258%21s%259%21s%2510%21s%2511%21s%2512%21s%2513%21s%2514%21s%2515%21s%2516%21s%2517%21s%2518%21s%2519%21s%2520%21s%2521%21n%2522%21n%2523%21n%2524%21n%2525%21n%2526%21n%2527%21n%2528%21n%2529%21n%2530%21n%2531%21n%2532%21n%2533%21n%2534%21n%2535%21n%2536%21n%2537%21n%2538%21n%2539%21n%2540%21n%0A&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "466",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%23%7B6157*6602%7Dzj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "483",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%23set%28%24x%3D7249*8072%29%24%7Bx%7Dzj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "464",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%24%7B9210*8320%7Dzj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "479",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%3C%25%3D1655*6489%25%3Ezj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "485",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%3Cp+th%3Atext%3D%22%24%7B8294*9792%7D%22%3E%3C%2Fp%3Ezj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "469",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%7B%235412*4452%7Dzj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "471",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%7B%402207*4650%7Dzj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "486",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%7B%40math+key%3D%228078%22+method%3D%22multiply%22+operand%3D%222466%22%2F%7Dzj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "476",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%7B%7B%3D8743*4035%7D%7Dzj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "488",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%7B%7B58340%7Cadd%3A93460%7D%7Dzj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "474",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%7B%7B6599*1532%7D%7Dzj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "490",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%7B%7Bprint+%224287%22+%223328%22%7D%7Dzj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "462",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj%7B9837*1112%7Dzj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "458",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=zj+8816*1791+zj&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "25",
+							"uri": "http://host.docker.internal:8080/api/v1/indicadores",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "163",
+							"uri": "http://host.docker.internal:8080/api/v1/indicadores",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "611",
+							"uri": "http://host.docker.internal:8080/api/v1/indicadores/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "6",
+							"uri": "http://host.docker.internal:8080/api/v1/indicadores/2782227630322873640",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "612",
+							"uri": "http://host.docker.internal:8080/api/v1/indicadores/BR/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "30",
+							"uri": "http://host.docker.internal:8080/api/v1/indices-geopoliticos",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "166",
+							"uri": "http://host.docker.internal:8080/api/v1/indices-geopoliticos",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "614",
+							"uri": "http://host.docker.internal:8080/api/v1/indices-geopoliticos/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "7",
+							"uri": "http://host.docker.internal:8080/api/v1/indices-geopoliticos/5815263113546190829",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "616",
+							"uri": "http://host.docker.internal:8080/api/v1/indices-geopoliticos/BR/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "615",
+							"uri": "http://host.docker.internal:8080/api/v1/moedas/",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "11",
+							"uri": "http://host.docker.internal:8080/api/v1/conversoes",
+							"nodeName": null,
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "140",
+							"uri": "http://host.docker.internal:8080/api/v1/conversoes",
+							"nodeName": null,
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "598",
+							"uri": "http://host.docker.internal:8080/api/v1/conversoes/",
+							"nodeName": null,
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "454",
+							"uri": "http://host.docker.internal:8080/computeMetadata/v1/",
+							"nodeName": null,
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "445",
+							"uri": "http://host.docker.internal:8080/latest/meta-data/",
+							"nodeName": null,
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "480",
+							"uri": "http://host.docker.internal:8080/metadata/instance",
+							"nodeName": null,
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "463",
+							"uri": "http://host.docker.internal:8080/opc/v1/instance/",
+							"nodeName": null,
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						}
+					],
+					"count": "271",
+					"systemic": false,
+					"solution": "",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "388",
+					"wascid": "20",
+					"sourceid": "31"
+				},
+				{
+					"pluginid": "10049",
+					"alertRef": "10049-1",
+					"alert": "Non-Storable Content",
+					"name": "Non-Storable Content",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The response contents are not storable by caching components such as proxy servers. If the response does not contain sensitive, personal or user-specific information, it may benefit from being stored and cached, to improve performance.</p>",
+					"instances":[ 
+						{
+							"id": "14",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "15",
+							"uri": "http://host.docker.internal:8080/api/v1/cotacoes/USD/BRL/historico?dataInicio=2026-11-16&dataFim=2026-11-20",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "16",
+							"uri": "http://host.docker.internal:8080/api/v1/indicadores/BR",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "17",
+							"uri": "http://host.docker.internal:8080/api/v1/indices-geopoliticos/BR",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "19",
+							"uri": "http://host.docker.internal:8080/api/v1/moedas",
+							"nodeName": null,
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "18",
+							"uri": "http://host.docker.internal:8080/api/v1/conversoes",
+							"nodeName": null,
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						}
+					],
+					"count": "6",
+					"systemic": false,
+					"solution": "<p>The content may be marked as storable by ensuring that the following conditions are satisfied:</p><p>The request method must be understood by the cache and defined as being cacheable (\"GET\", \"HEAD\", and \"POST\" are currently defined as cacheable)</p><p>The response status code must be understood by the cache (one of the 1XX, 2XX, 3XX, 4XX, or 5XX response classes are generally understood)</p><p>The \"no-store\" cache directive must not appear in the request or response header fields</p><p>For caching by \"shared\" caches such as \"proxy\" caches, the \"private\" response directive must not appear in the response</p><p>For caching by \"shared\" caches such as \"proxy\" caches, the \"Authorization\" header field must not appear in the request, unless the response explicitly allows it (using one of the \"must-revalidate\", \"public\", or \"s-maxage\" Cache-Control response directives)</p><p>In addition to the conditions above, at least one of the following conditions must also be satisfied by the response:</p><p>It must contain an \"Expires\" header field</p><p>It must contain a \"max-age\" response directive</p><p>For \"shared\" caches such as \"proxy\" caches, it must contain a \"s-maxage\" response directive</p><p>It must contain a \"Cache Control Extension\" that allows it to be cached</p><p>It must have a status code that is defined as cacheable by default (200, 203, 204, 206, 300, 301, 404, 405, 410, 414, 501).</p>",
+					"otherinfo": "",
+					"reference": "<p>https://datatracker.ietf.org/doc/html/rfc7234</p><p>https://datatracker.ietf.org/doc/html/rfc7231</p><p>https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html</p>",
+					"cweid": "524",
+					"wascid": "13",
+					"sourceid": "6"
+				}
+			]
+		}
+	],
+	"sequences":[
+	]
+
+}
