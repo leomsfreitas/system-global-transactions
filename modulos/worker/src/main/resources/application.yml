@@ -1,0 +1,102 @@
+spring:
+  application:
+    name: transacoes-worker
+  main:
+    web-application-type: none
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/transacoes}
+    username: ${DB_USUARIO_WORKER:transacoes_worker}
+    password: ${DB_SENHA_WORKER:}
+    hikari:
+      maximum-pool-size: 4
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.jdbc.time_zone: UTC
+  flyway:
+    enabled: false
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORTA:6379}
+      password: ${REDIS_SENHA:}
+      ssl:
+        enabled: ${REDIS_TLS:false}
+      timeout: 500ms
+      connect-timeout: 500ms
+
+worker:
+  janela-cotacoes-dias: 5
+  meses-antecedencia-particoes: 3
+  executar-ao-iniciar: false
+  encerrar-apos-job: true
+  migracao:
+    url: ${MIGRACAO_DB_URL:}
+    usuario: ${MIGRACAO_DB_USUARIO:}
+    senha: ${MIGRACAO_DB_SENHA:}
+  # Espelha os schedules do EventBridge (secao 5.6). Usado so no perfil local.
+  agenda:
+    bcb: "0 */15 9-17 * * MON-FRI"
+    bce: "0 30 17 * * MON-FRI"
+    indicadores: "0 0 6 * * *"
+    indice: "0 30 6 * * *"
+    particoes: "0 0 3 * * *"
+
+conectores:
+  timeout-conexao: 3s
+  timeout-leitura: 15s
+  tentativas: 3
+  espera-inicial: 500ms
+  multiplicador-espera: 2.0
+  indicador-estabilidade-politica: GOV_WGI_PV.EST
+  urls:
+    bcb-ptax: ${URL_BCB_PTAX:https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata}
+    bcb-sgs: ${URL_BCB_SGS:https://api.bcb.gov.br}
+    bce: ${URL_BCE:https://data-api.ecb.europa.eu/service/data}
+    fmi: ${URL_FMI:https://api.imf.org/external/sdmx/3.0}
+    banco-mundial: ${URL_BANCO_MUNDIAL:https://api.worldbank.org/v2}
+
+ajuste-geopolitico:
+  peso-politico: 0.6
+  peso-economico: 0.4
+  limite-inflacao: 50
+  ajuste-maximo: 0.05
+  agregados:
+    EU: [DE, FR, IT, ES, NL]
+
+cache:
+  habilitado: true
+
+metricas:
+  cloudwatch:
+    habilitado: false
+
+logging:
+  structured:
+    format:
+      console: ecs
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+worker:
+  executar-ao-iniciar: true
+logging:
+  structured:
+    format:
+      console: ""
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level [%X{job:-}] %logger{36} - %msg%n"
+---
+spring:
+  config:
+    activate:
+      on-profile: aws
+  datasource:
+    url: ${DB_URL}?sslmode=verify-full&sslrootcert=/etc/ssl/certs/rds-global-bundle.pem
+metricas:
+  cloudwatch:
+    habilitado: true
