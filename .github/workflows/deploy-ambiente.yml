@@ -1,0 +1,63 @@
+name: Deploy em um ambiente
+
+on:
+  workflow_call:
+    inputs:
+      ambiente:
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    # O environment "prod" exige aprovacao manual (configurado no GitHub). Variaveis por environment:
+    # AWS_ROLE_ARN, AWS_REGION, NOME, URL_API, SUBNETS, SG_WORKER.
+    environment: ${{ inputs.ambiente }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: imagem-*
+          merge-multiple: true
+      - uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Push das imagens com a tag do SHA
+        id: push
+        env:
+          REGISTRO: ${{ steps.ecr.outputs.registry }}
+          NOME: ${{ vars.NOME }}
+          SHA: ${{ github.sha }}
+        run: |
+          for m in api worker; do
+            gunzip -c "imagem-$m.tar.gz" | docker load
+            docker tag "transacoes-$m:$SHA" "$REGISTRO/$NOME/$m:$SHA"
+            docker push "$REGISTRO/$NOME/$m:$SHA"
+          done
+          {
+            echo "api=$REGISTRO/$NOME/api:$SHA"
+            echo "worker=$REGISTRO/$NOME/worker:$SHA"
+          } >> "$GITHUB_OUTPUT"
+      - name: Migracao (tarefa unica) e deploy da API (rolling + rollback automatico)
+        env:
+          NOME: ${{ vars.NOME }}
+          IMAGEM_API: ${{ steps.push.outputs.api }}
+          IMAGEM_WORKER: ${{ steps.push.outputs.worker }}
+          SUBNETS: ${{ vars.SUBNETS }}
+          SG_WORKER: ${{ vars.SG_WORKER }}
+        run: .github/scripts/deploy-ecs.sh
+      - name: Smoke test nos 6 endpoints
+        env:
+          URL: ${{ vars.URL_API }}
+          NOME: ${{ vars.NOME }}
+        run: |
+          CHAVE=$(aws secretsmanager get-secret-value --secret-id "$NOME/api/chave-smoke" --query SecretString --output text)
+          echo "::add-mask::$CHAVE"
+          CHAVE="$CHAVE" .github/scripts/smoke-test.sh

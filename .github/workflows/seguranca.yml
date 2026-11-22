@@ -1,0 +1,59 @@
+name: Seguranca
+
+on:
+  workflow_call:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  segredos:
+    name: Gitleaks
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - run: docker run --rm -v "$PWD":/repo -w /repo zricethezav/gitleaks:v8.28.0 git --redact -v --exit-code 1 .
+
+  dependencias-e-imagem:
+    name: Trivy (dependencias, configuracao e imagem)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Dependencias Maven, Dockerfile e IaC
+        run: docker run --rm -v "$PWD":/w -w /w aquasec/trivy:0.67.2 fs --scanners vuln,misconfig,secret --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 .
+      - name: Build da imagem da API
+        run: docker build --build-arg MODULO=api -t transacoes-api:ci .
+      - name: Imagem
+        run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.67.2 image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 transacoes-api:ci
+
+  iac:
+    name: Checkov (IaC)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: docker run --rm -v "$PWD":/w -w /w bridgecrew/checkov:3.4.3 -d infra --quiet --compact --config-file infra/.checkov.yaml --framework terraform
+
+  dast:
+    name: OWASP ZAP (API local)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - name: Sobe o ambiente local
+        run: make up
+      - name: ZAP API scan contra a spec
+        run: make zap URL=http://172.17.0.1:8080
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: zap
+          path: docs/04-testes/zap
+      - name: Falha se houver alerta alto
+        run: |
+          altos=$(jq '[.site[].alerts[] | select(.riskcode == "3")] | length' docs/04-testes/zap/zap-relatorio.json)
+          echo "Alertas altos: $altos"; [ "$altos" -eq 0 ]

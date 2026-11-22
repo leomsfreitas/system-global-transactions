@@ -1,0 +1,37 @@
+name: Documentacao
+
+on:
+  push:
+    branches: [main]
+    paths: ["api-spec/**", "docs/guia-desenvolvedor/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Gera a referencia (Redoc) a partir da spec e copia o guia
+        run: |
+          mkdir -p site
+          docker run --rm -v "$PWD":/w -w /w redocly/cli:2.11.0 build-docs api-spec/openapi.yaml -o site/referencia.html
+          cp -r docs/guia-desenvolvedor/* site/
+          cp api-spec/openapi.yaml site/openapi.yaml
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

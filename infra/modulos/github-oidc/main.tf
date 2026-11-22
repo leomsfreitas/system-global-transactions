@@ -69,7 +69,14 @@ resource "aws_iam_role_policy" "cd" {
         Action   = ["ecs:DescribeTasks"]
         Resource = "arn:aws:ecs:*:${data.aws_caller_identity.atual.account_id}:task/${var.cluster_nome}/*"
       },
-      { Effect = "Allow", Action = ["iam:PassRole"], Resource = var.roles_tarefa_arns }
+      { Effect = "Allow", Action = ["iam:PassRole"], Resource = var.roles_tarefa_arns },
+      # Chave de API usada so pelo smoke test do CD (criada no go-live)
+      {
+        Effect   = "Allow"
+        Action   = ["secretsmanager:GetSecretValue"]
+        Resource = "arn:aws:secretsmanager:*:${data.aws_caller_identity.atual.account_id}:secret:${var.nome}/api/chave-smoke-*"
+      },
+      { Effect = "Allow", Action = ["kms:Decrypt"], Resource = [var.kms_arn] }
     ]
   })
 }

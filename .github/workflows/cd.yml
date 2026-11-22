@@ -1,0 +1,49 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write   # OIDC com a AWS: nenhuma chave estatica
+
+concurrency:
+  group: cd
+  cancel-in-progress: false
+
+jobs:
+  imagens:
+    name: Build e scan das imagens (${{ matrix.modulo }})
+    runs-on: ubuntu-24.04-arm   # Fargate ARM64
+    strategy:
+      matrix:
+        modulo: [api, worker]
+    steps:
+      - uses: actions/checkout@v5
+      - run: docker build --build-arg MODULO=${{ matrix.modulo }} -t transacoes-${{ matrix.modulo }}:${{ github.sha }} .
+      - name: Trivy (bloqueia HIGH/CRITICAL com correcao disponivel)
+        run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.67.2 image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 transacoes-${{ matrix.modulo }}:${{ github.sha }}
+      - run: docker save transacoes-${{ matrix.modulo }}:${{ github.sha }} | gzip > imagem-${{ matrix.modulo }}.tar.gz
+      - uses: actions/upload-artifact@v5
+        with:
+          name: imagem-${{ matrix.modulo }}
+          path: imagem-${{ matrix.modulo }}.tar.gz
+          retention-days: 3
+
+  deploy-dev:
+    name: Deploy dev
+    needs: imagens
+    uses: ./.github/workflows/deploy-ambiente.yml
+    with:
+      ambiente: dev
+    secrets: inherit
+
+  deploy-prod:
+    name: Deploy prod (aprovacao manual)
+    needs: deploy-dev
+    uses: ./.github/workflows/deploy-ambiente.yml
+    with:
+      ambiente: prod
+    secrets: inherit

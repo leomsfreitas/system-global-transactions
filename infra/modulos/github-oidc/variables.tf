@@ -39,6 +39,11 @@ variable "cluster_nome" {
   type        = string
 }
 
+variable "kms_arn" {
+  description = "Chave KMS dos segredos"
+  type        = string
+}
+
 variable "permitir_apply" {
   description = "Concede escrita a role de Terraform"
   type        = bool

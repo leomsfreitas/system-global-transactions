@@ -1,0 +1,60 @@
+name: Infra
+
+on:
+  pull_request:
+    paths: ["infra/**"]
+  workflow_dispatch:
+    inputs:
+      ambiente:
+        description: Ambiente para apply
+        type: choice
+        options: [dev, prod]
+        required: true
+
+permissions:
+  contents: read
+  id-token: write
+  pull-requests: write
+
+jobs:
+  plan:
+    if: github.event_name == 'pull_request'
+    name: Plan (${{ matrix.ambiente }})
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        ambiente: [dev, prod]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.17.1
+      - uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ vars[format('AWS_ROLE_TERRAFORM_{0}', matrix.ambiente)] }}
+          aws-region: sa-east-1
+      - working-directory: infra/ambientes/${{ matrix.ambiente }}
+        run: |
+          terraform init -input=false
+          terraform plan -input=false -no-color -lock=false | tee plano.txt
+
+  apply:
+    if: github.event_name == 'workflow_dispatch'
+    name: Apply (${{ inputs.ambiente }}) com aprovacao
+    runs-on: ubuntu-24.04
+    # Environment protegido: reviewers obrigatorios no GitHub. Apply nunca roda automaticamente.
+    environment: infra-${{ inputs.ambiente }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.17.1
+      - uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_TERRAFORM }}
+          aws-region: sa-east-1
+      - working-directory: infra/ambientes/${{ inputs.ambiente }}
+        run: |
+          terraform init -input=false
+          terraform plan -input=false -out=plano.tfplan
+          terraform apply -input=false plano.tfplan

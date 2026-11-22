@@ -134,4 +134,5 @@ module "github_oidc" {
   roles_tarefa_arns     = module.ecs.roles_arns
   cluster_arn           = module.ecs.cluster_arn
   cluster_nome          = module.ecs.cluster_nome
+  kms_arn               = module.kms.arn
 }
