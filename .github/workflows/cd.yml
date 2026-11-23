@@ -1,8 +1,7 @@
 name: CD
 
+# So manual: sem conta AWS configurada o deploy automatico falharia em todo push
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
