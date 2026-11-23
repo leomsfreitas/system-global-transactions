@@ -64,8 +64,10 @@ jobs:
             (cd "$d" && terraform init -backend=false -input=false && terraform validate)
           done
       - name: tflint
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # download do plugin autenticado (evita rate limit da API)
         run: |
-          docker run --rm -v "$PWD":/w -w /w -e TFLINT_PLUGIN_DIR=/w/.tflint.d --entrypoint sh ghcr.io/terraform-linters/tflint:v0.59.1 \
+          docker run --rm -v "$PWD":/w -w /w -e TFLINT_PLUGIN_DIR=/w/.tflint.d -e GITHUB_TOKEN --entrypoint sh ghcr.io/terraform-linters/tflint:v0.59.1 \
             -c "tflint --init --config=/w/infra/.tflint.hcl && tflint --chdir=infra --recursive --config=/w/infra/.tflint.hcl"
 
   workflows:
